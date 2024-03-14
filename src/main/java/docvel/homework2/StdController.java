@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("student")
 public class StdController {
 
     private final StdRepo repository;
@@ -15,24 +16,23 @@ public class StdController {
         this.repository = repository;
     }
 
-    @GetMapping("student/{id}")
+    @GetMapping("{id}")
     public Student getById(@PathVariable long id) {
         return repository.getById(id);
     }
 
-    @GetMapping("student/search")
+    @GetMapping("search")
     public List<Student> getAllByName(@RequestParam String name) {
         return repository.getAllByName(name);
     }
 
-    @GetMapping("student")
+    @GetMapping()
     public List<Student> getAll() {
         return repository.getAll();
     }
 
-    @GetMapping("group/{group}/student")
+    @GetMapping("group/{group}")
     public List<Student> getByGroup(@PathVariable String group) {
         return repository.getByGroup(group);
     }
 }
-
